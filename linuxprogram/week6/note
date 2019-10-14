@@ -1,0 +1,6 @@
+dynamic library linkage
+
+d-lib: dynamic depot
+
+exam: d-test1.c:dynamic linking method 1
+	  d-test2.c:dynamic linking method 1
