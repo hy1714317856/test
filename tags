@@ -4,39 +4,51 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-DIR_MODE	fun3/ourhdr.h	16;"	d	language:C++
-FILE_MODE	fun3/ourhdr.h	14;"	d	language:C++
-MAXLINE	fun3/ourhdr.h	13;"	d	language:C++
-SIG_ERR	fun3/ourhdr.h	22;"	d	language:C++
-Sigfunc	fun3/ourhdr.h	/^typedef void    Sigfunc(int);   \/* for signal handlers *\/ $/;"	t	language:C++
-UNUMBER	fun1/uhead.h	4;"	d	language:C++
-__ourhdr_h	fun3/ourhdr.h	3;"	d	language:C++
-arg	fun1/uhead.h	/^struct arg{$/;"	s	language:C++
-ave	fun1/uhead.h	/^   float ave;$/;"	m	language:C++	struct:arg
-bsort	fun1/func.c	/^void bsort(int *a,int n)$/;"	f	language:C	signature:(int *a,int n)
-comp	fun1/func.c	/^int comp(const void*a,const void*b)$/;"	f	language:C	signature:(const void*a,const void*b)
-err_doit	fun3/ourhdr.h	/^static void err_doit(int errnoflag, const char *fmt, va_list ap)$/;"	f	language:C++	signature:(int errnoflag, const char *fmt, va_list ap)
-err_dump	fun3/ourhdr.h	/^void err_dump(const char *fmt,...)$/;"	f	language:C++	signature:(const char *fmt,...)
-err_msg	fun3/ourhdr.h	/^void err_msg(const char *fmt,...)$/;"	f	language:C++	signature:(const char *fmt,...)
-err_quit	fun3/ourhdr.h	/^void err_quit(const char *fmt,...)$/;"	f	language:C++	signature:(const char *fmt,...)
-err_ret	fun3/ourhdr.h	/^void err_ret(const char *fmt,...)$/;"	f	language:C++	signature:(const char *fmt,...)
-err_sys	fun3/ourhdr.h	/^void err_sys(const char *fmt,...)$/;"	f	language:C++	signature:(const char *fmt,...)
-is_readlock	fun3/ourhdr.h	78;"	d	language:C++
-is_writelock	fun3/ourhdr.h	79;"	d	language:C++
-main	fun1/main.c	/^int main()$/;"	f	language:C
-main	fun3/3-6.c	/^int main(int argc, char* argv[]){$/;"	f	language:C	signature:(int argc, char* argv[])
-max	fun3/ourhdr.h	25;"	d	language:C++
-min	fun3/ourhdr.h	24;"	d	language:C++
-operater	fun1/func2.c	/^struct arg operater(int *a,int n)$/;"	f	language:C	signature:(int *a,int n)
-pname	fun3/ourhdr.h	/^char *pname = NULL; \/* caller can set this from argv[0]*\/$/;"	v	language:C++
-read_lock	fun3/ourhdr.h	72;"	d	language:C++
-readw_lock	fun3/ourhdr.h	73;"	d	language:C++
-show	fun1/func.c	/^void show(int *a,int n)$/;"	f	language:C	signature:(int *a,int n)
-sum	fun1/uhead.h	/^   int sum;$/;"	m	language:C++	struct:arg
-sysort	fun1/func.c	/^void sysort(void *base,int num,int width)$/;"	f	language:C	signature:(void *base,int num,int width)
-totaltime	fun1/func.c	/^int totaltime(int *a,int n)$/;"	f	language:C	signature:(int *a,int n)
-un_lock	fun3/ourhdr.h	76;"	d	language:C++
-urand	fun1/func.c	/^void urand(int *a,int n)$/;"	f	language:C	signature:(int *a,int n)
-usum	fun1/func.c	/^int usum(int *a,int n)$/;"	f	language:C	signature:(int *a,int n)
-write_lock	fun3/ourhdr.h	74;"	d	language:C++
-writew_lock	fun3/ourhdr.h	75;"	d	language:C++
+DIR_MODE	linuxprogram/week1234/code/fun3/ourhdr.h	16;"	d	language:C++
+FILE_MODE	linuxprogram/week1234/code/fun3/ourhdr.h	14;"	d	language:C++
+MAXLINE	linuxprogram/week1234/code/fun3/ourhdr.h	13;"	d	language:C++
+SIG_ERR	linuxprogram/week1234/code/fun3/ourhdr.h	22;"	d	language:C++
+Sigfunc	linuxprogram/week1234/code/fun3/ourhdr.h	/^typedef void    Sigfunc(int);   \/* for signal handlers *\/ $/;"	t	language:C++
+UNUMBER	linuxprogram/week1234/code/fun1/uhead.h	4;"	d	language:C++
+__ourhdr_h	linuxprogram/week1234/code/fun3/ourhdr.h	3;"	d	language:C++
+arg	linuxprogram/week1234/code/fun1/uhead.h	/^struct arg{$/;"	s	language:C++
+ave	linuxprogram/week1234/code/fun1/uhead.h	/^   float ave;$/;"	m	language:C++	struct:arg
+bsort	linuxprogram/week1234/code/fun1/func.c	/^void bsort(int *a,int n)$/;"	f	language:C	signature:(int *a,int n)
+comp	linuxprogram/week1234/code/fun1/func.c	/^int comp(const void*a,const void*b)$/;"	f	language:C	signature:(const void*a,const void*b)
+err_doit	linuxprogram/week1234/code/fun3/ourhdr.h	/^static void err_doit(int errnoflag, const char *fmt, va_list ap)$/;"	f	language:C++	signature:(int errnoflag, const char *fmt, va_list ap)
+err_dump	linuxprogram/week1234/code/fun3/ourhdr.h	/^void err_dump(const char *fmt,...)$/;"	f	language:C++	signature:(const char *fmt,...)
+err_msg	linuxprogram/week1234/code/fun3/ourhdr.h	/^void err_msg(const char *fmt,...)$/;"	f	language:C++	signature:(const char *fmt,...)
+err_quit	linuxprogram/week1234/code/fun3/ourhdr.h	/^void err_quit(const char *fmt,...)$/;"	f	language:C++	signature:(const char *fmt,...)
+err_ret	linuxprogram/week1234/code/fun3/ourhdr.h	/^void err_ret(const char *fmt,...)$/;"	f	language:C++	signature:(const char *fmt,...)
+err_sys	linuxprogram/week1234/code/fun3/ourhdr.h	/^void err_sys(const char *fmt,...)$/;"	f	language:C++	signature:(const char *fmt,...)
+getnumber	linuxprogram/week5/code/lib/fun1.c	/^void getnumber(int *a,int n)$/;"	f	language:C	signature:(int *a,int n)
+getnumber	linuxprogram/week6/code/d-lib/fun1.c	/^void getnumber(int *a,int n)$/;"	f	language:C	signature:(int *a,int n)
+is_readlock	linuxprogram/week1234/code/fun3/ourhdr.h	78;"	d	language:C++
+is_writelock	linuxprogram/week1234/code/fun3/ourhdr.h	79;"	d	language:C++
+main	linuxprogram/week1234/code/fun1/main.c	/^int main()$/;"	f	language:C
+main	linuxprogram/week1234/code/fun3/3-6.c	/^int main(int argc, char* argv[]){$/;"	f	language:C	signature:(int argc, char* argv[])
+main	linuxprogram/week5/code/exam/test.c	/^int main(){$/;"	f	language:C
+main	linuxprogram/week5/code/lib/test.c	/^int main(){$/;"	f	language:C
+main	linuxprogram/week6/code/d-lib/test.c	/^int main(){$/;"	f	language:C
+main	linuxprogram/week6/code/exam/d-test1.c	/^int main(){$/;"	f	language:C
+main	linuxprogram/week6/code/exam/d-test2.c	/^int main(){$/;"	f	language:C
+main	linuxprogram/week7/code/one.cpp	/^int main()$/;"	f	language:C++	signature:()
+max	linuxprogram/week1234/code/fun3/ourhdr.h	25;"	d	language:C++
+max	linuxprogram/week5/code/lib/fun2.c	/^int max(int *a,int n){$/;"	f	language:C	signature:(int *a,int n)
+max	linuxprogram/week6/code/d-lib/fun2.c	/^int max(int *a,int n){$/;"	f	language:C	signature:(int *a,int n)
+min	linuxprogram/week1234/code/fun3/ourhdr.h	24;"	d	language:C++
+operater	linuxprogram/week1234/code/fun1/func2.c	/^struct arg operater(int *a,int n)$/;"	f	language:C	signature:(int *a,int n)
+pname	linuxprogram/week1234/code/fun3/ourhdr.h	/^char *pname = NULL; \/* caller can set this from argv[0]*\/$/;"	v	language:C++
+read_lock	linuxprogram/week1234/code/fun3/ourhdr.h	72;"	d	language:C++
+readw_lock	linuxprogram/week1234/code/fun3/ourhdr.h	73;"	d	language:C++
+show	linuxprogram/week1234/code/fun1/func.c	/^void show(int *a,int n)$/;"	f	language:C	signature:(int *a,int n)
+sum	linuxprogram/week1234/code/fun1/uhead.h	/^   int sum;$/;"	m	language:C++	struct:arg
+sum	linuxprogram/week5/code/lib/fun3.c	/^int sum(int *a,int n){$/;"	f	language:C	signature:(int *a,int n)
+sum	linuxprogram/week6/code/d-lib/fun3.c	/^int sum(int *a,int n){$/;"	f	language:C	signature:(int *a,int n)
+sysort	linuxprogram/week1234/code/fun1/func.c	/^void sysort(void *base,int num,int width)$/;"	f	language:C	signature:(void *base,int num,int width)
+totaltime	linuxprogram/week1234/code/fun1/func.c	/^int totaltime(int *a,int n)$/;"	f	language:C	signature:(int *a,int n)
+un_lock	linuxprogram/week1234/code/fun3/ourhdr.h	76;"	d	language:C++
+urand	linuxprogram/week1234/code/fun1/func.c	/^void urand(int *a,int n)$/;"	f	language:C	signature:(int *a,int n)
+usum	linuxprogram/week1234/code/fun1/func.c	/^int usum(int *a,int n)$/;"	f	language:C	signature:(int *a,int n)
+write_lock	linuxprogram/week1234/code/fun3/ourhdr.h	74;"	d	language:C++
+writew_lock	linuxprogram/week1234/code/fun3/ourhdr.h	75;"	d	language:C++
