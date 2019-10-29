@@ -1,0 +1,164 @@
+环境变量通常具有全局属性（可以被子进程继承下去）
+
+PATH*:指定命令的搜索路径
+
+HOME*:指定用户的主工作目录（即用户登陆到Linux系统中时，默认的目录）
+
+HISTSIZE*：指保存历史命令记录的条数
+
+SHELL*：当前Shell，它的值通常是/bin/bash
+
+(1.)如何查看环境变量？？？
+
+1.直接用命令
+
+这里的name是环境变量的名称
+
+echo $name
+
+2.main函数的第三个参数
+
+ 
+
+#include<stdio.h>
+
+int main(int argc,char *argv[],char *env[])
+
+{
+
+int i = 0;
+
+for(;env[i];i++)
+
+{
+
+printf("%s\n",env[i]);
+
+}
+
+return 0;
+
+}
+
+在这里补充说一下main函数的三个参数的含义：
+
+ 
+
+argc:程序有几个命令行参数
+
+argv:用于存储这个参数
+
+env:用于存储环境变量
+
+3.通过第三方变量environ获取
+
+ 
+
+#include<stdio.h>
+
+int main(int argc,char *argv[])
+
+{
+
+extern char **environ;
+
+int i = 0;
+
+for(; environ[i];i++)
+
+{
+
+printf("%s\n",environ[i]);
+
+}
+
+return 0;
+
+}
+
+4.调用getenv/putenv
+
+#include<stdio.h>
+
+#include<stdlib.h>
+
+int main()
+
+{
+
+printf("%s\n",getenv("PATH"));
+
+return 0;
+
+}
+
+常用putenv和getenv来访问特定的环境变量
+
+ 
+
+（2.）和环境变量相关的指令
+
+ 
+
+echo:显示某个环境变量
+
+export:设置一个新的环境变量
+
+env：显示所有环境变量
+
+unset:清楚环境变量
+
+set:显示本地定义的shell变量和环境变量
+
+）环境变量的组织方式
+
+每一个程序都会收到一张环境表，环境表是一个字符指针数组，每个指针数组指向一个以 \0 结尾的环境字符串
+
+环境变量详解
+
+进程运行的环境中的变量。
+
+
+（2）进程环境表
+
+每一个进程中都有一份所有环境变量构成的一个表格，即当前进程可以直接使用这些环境变量。
+
+进程环境表是一个字符串数组（char** ，或者char* str[ ]），如上图所示。
+
+可以用environ这个全局变量指向它。
+
+（3）程序中通过environ全局变量，来使用环境变量；
+
+#include <stdio.h>
+
+int main(void)
+
+ 
+
+{
+
+extern char **environ;// 声明就能用，不用定义
+
+int i = 0;
+
+while (NULL != environ[i])
+
+{
+
+printf("%s\n", environ[i]);
+
+i++;
+
+}
+
+
+
+return 0;
+
+（4）程序中，可以无条件直接使用系统中的环境变量。
+
+一旦程序中用到了环境变量，那么程序就和具体操作系统的环境有关了。
+
+（5）获取指定环境变量函数getenv，设置环境变量setenv。
+
+只能设置、删除当前进程的环境变量，而不是操作系统的环境变量。

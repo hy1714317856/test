@@ -6,7 +6,7 @@ char buf[]={"write to stdout\n"};
 int main()
 {
 	pid_t id;
-	if((write(STDOUT_FILENO,buf,sizeof(buf))-1)
+	if(write(STDOUT_FILENO,buf,sizeof(buf))-1)
 	{
 		perror("cant't write");
 	}
