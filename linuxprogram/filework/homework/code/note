@@ -1,0 +1,13 @@
+static depot
+ar -rc lbmytestlib.a file.o interface.o
+gcc main.c -o main -L. -lmytestlib
+
+gcc main.c -o main -L/home/rlk/exam/lib -lmytestlib
+
+
+dynamic depot
+gccc -shared -fPIC -o libdynamic.so file.c interface.c 
+gcc -o main main.c ./libdynamic.so
+
+gcc -o dltest main.c ../dynamic/libdynamic.so -T../dynamiclib
+
