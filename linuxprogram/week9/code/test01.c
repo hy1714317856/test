@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-static void _attribute_ ((constructor)) before_main(void){
+static void __attribute__((constructor)) before_main(void){
 	printf("Running befored main!\n");
 }
 
