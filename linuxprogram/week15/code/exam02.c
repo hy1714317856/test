@@ -1,68 +1,91 @@
-#include <pthread.h>
 #include <stdio.h>
-#define NUM_THREADS 3
-#define TCOUNT 10
-#define COUNT_LIMIT 12
-#define SIZE 5
-
-int count = 0;
-int thread_ids[3]={0,1,2};
-pthread_mutex_t count_mutex;
-pthread_cond_t count_threshold_cy;
-int buf[SIZE]; //缓冲区 
-
-void *watch_count(void *idp){
-	int *my_id=idp;
-	printf("Starting watch_count():thread %d\n",my_id);
-	pthread_mutex_lock(&count_mutex);
-	if(count<COUNT_LIMIT){
-		pthread_cond_wait(&count_threshold_cy,&count_mutex);
-		printf("watch_count():thread %d Condition signal received.\n",*my_id);
-	}
-	pthread_mutex_unlock(&count_mutex);
-	pthread_exit(NULL);
-}
-
-void *inc_count(void *idp){
-	int i,j;
-	double result=0.0;
-	int *my_id=idp;
-	for(i=0;i<TCOUNT;i++)
-	{
-		pthread_mutex_lock(&count_mutex);
-		count++;
-		if(count==COUNT_LIMIT)
-		{
-			pthread_cond_signal(&count_threshold_cy);
-			printf("inc_count():thread %d , count = %d Threshold reached.\n",*my_id,count);
-		}
-		printf("inc_count():thread %d,count = %d, unlocking mutex\n",*my_id,count);
-		pthread_mutex_unlock(&count_mutex);
-		for(j=0;j<1000;j++)
-		{
-			result = result+(double)random();
-		}
+#include <string.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <unistd.h>
+#include <pthread.h>
+ 
+ 
+#define CUSTOM_COUNT 4						//消费者数目
+#define PRODUCT_COUNT 1						//生产者数目
+#define BUFFER_SIZE 5 						//缓冲池大小
+ 
+//int nNum, nLoop;
+int buffer[BUFFER_SIZE];					//缓冲区
+int head=0;									//缓冲池读取指针
+int wpoint=0; 								//缓冲池写入指针
+ 
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
+ 
+void *consume(void *arg)
+{
+	while(1){
+		int data;
+		
+		pthread_mutex_lock(&mutex);
+		
+        while(((wpoint-head+BUFFER_SIZE)%BUFFER_SIZE) == 0){//醒来以后需要重新判断条件是否满足,如果不满足，再次等待
+            printf("consume is waiting: %lu\n", pthread_self());
+            pthread_cond_wait(&cond, &mutex);
+				}
+        printf("consume is %lu    buffer is %d\n", pthread_self(), (wpoint-head+BUFFER_SIZE)%BUFFER_SIZE);
+		data = buffer[head];
+		head = (head + 1) % BUFFER_SIZE;
+	    pthread_mutex_unlock(&mutex);	
+        sleep(4);
 	}
 	pthread_exit(NULL);
 }
-
-int main(int argc, char *argv[]){
-	int i,rc;
-	pthread_t threads[3];
-	pthread_attr_t attr;
-	pthread_mutex_init(&count_mutex,NULL);
-	pthread_cond_init(&count_threshold_cy,NULL);
-	pthread_attr_init(&attr);
-	pthread_attr_setdetachstate(&attr,PTHREAD_CREATE_JOINABLE);
-	pthread_create(&threads[0],&attr,inc_count,(void *)&thread_ids[0]);
-	pthread_create(&threads[1],&attr,inc_count,(void *)&thread_ids[1]);
-	pthread_create(&threads[2],&attr,watch_count,(void *)&thread_ids[2]);
-	for(i=0;i<NUM_THREADS;i++){
-		pthread_join(threads[i],NULL);
-	}
-	printf("Main():Waited on %d threads.Done.\n",NUM_THREADS);
-	pthread_attr_destroy(&attr);
-	pthread_mutex_destroy(&count_mutex);
-	pthread_cond_destroy(&count_threshold_cy);
+ 
+void *produce(void *arg)
+{
+    while(1){
+        pthread_mutex_lock(&mutex);
+        if(((wpoint-head+BUFFER_SIZE)%BUFFER_SIZE) >= BUFFER_SIZE-1){
+            printf("产品太多，休眠1秒\n");
+            pthread_mutex_unlock(&mutex);
+            sleep(1);
+            continue;
+        }
+   //不用解锁再上锁，因为如果大于BUFFER_SIZE，会解锁，但是会continue,不会执行下面的语句，会重新从头开始，上锁； 
+        printf("start produce the product\n");
+        buffer[wpoint] = 1;
+		wpoint = (wpoint + 1) % BUFFER_SIZE;
+        printf("produce is %lu    buffer is %d\n", pthread_self(), (wpoint-head+BUFFER_SIZE)%BUFFER_SIZE);
+        pthread_cond_signal(&cond);
+        pthread_mutex_unlock(&mutex);
+        sleep(1);
+    }
 	pthread_exit(NULL);
+}
+ 
+int main()
+{
+	int i = 0;
+	pthread_t tidCustom[CUSTOM_COUNT];
+	pthread_t tidProduce[PRODUCT_COUNT];
+	/*创建生产者线程*/
+	for (i = 0; i < PRODUCT_COUNT; ++i){
+		pthread_create(&tidProduce[i], NULL, produce, NULL);
+	}
+	sleep(3);
+	/*创建消费者线程*/
+	for (i = 0; i < CUSTOM_COUNT; ++i){
+		pthread_create(&tidCustom[i], NULL, consume, NULL);
+	}
+
+	/*等待生产者线程*/
+	for (i = 0; i < PRODUCT_COUNT; ++i){
+		pthread_join(tidProduce[i], NULL);
+	}
+	/*等待消费者线程*/
+	for (i = 0; i < CUSTOM_COUNT; ++i){
+		pthread_join(tidCustom[i], NULL);
+	}
+	
+	
+	
+	printf("parent exit\n");
+	exit(0);
 }
